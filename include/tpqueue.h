@@ -12,8 +12,14 @@ class TPQueue {
     end;
   int count;
  public:
-TPQueue();
-  ~TPQueue();
+  TPQueue():
+    size(100),
+    begin(0), end(0), count(0) {
+    arr = new T[size + 1];
+  }
+  ~TPQueue() {
+    delete[] arr;
+  }
   void push(const T &);
   T pop();
   T get() const;
@@ -21,15 +27,7 @@ TPQueue();
   bool isFull() const;
 };
 
-template<typename T>
-TPQueue<T>::TPQueue : size(100),
-begin(0), end(0), count(0) {
-  arr = new T[size + 1];
-}
-template<typename T>
-TPQueue<T>::~TPQueue() {
-  delete [] arr;
-}
+
 template<typename T>
 void TPQueue<T>::push(const T & item) {
   assert(count < size);
@@ -59,7 +57,7 @@ T TPQueue<T>::pop() {
   count--;
 
   if (begin > size)
-   begin -= size + 1;
+    begin -= size + 1;
   return item;
 }
 template<typename T>
