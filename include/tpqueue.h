@@ -10,10 +10,10 @@ class TPQueue {
   int size;
   int begin,
     end;
-  int count;   
+  int count;
  public:
-TQueue();
-  ~TQueue();
+TPQueue();
+  ~TPQueue();
   void push(const T &);
   T pop();
   T get() const;
@@ -22,17 +22,17 @@ TQueue();
 };
 
 template<typename T>
-TQueue<T>::TQueue : size(100),
+TPQueue<T>::TPQueue : size(100),
 begin(0), end(0), count(0) {
   arr = new T[size + 1];
 }
 template<typename T>
-TQueue<T>::~TQueue() {
+TPQueue<T>::~TPQueue() {
   delete [] arr;
 }
 template<typename T>
-void TQueue<T>::push(const T & item) {
-  assert( count < size );
+void TPQueue<T>::push(const T & item) {
+  assert(count < size);
   if (end != 0) {
     for (int i = end - 1; i > -1; --i) {
       if (arr[i].prior >= item.prior) {
@@ -53,9 +53,8 @@ void TQueue<T>::push(const T & item) {
 }
 
 template<typename T>
-T TQueue<T>::pop() {
+T TPQueue<T>::pop() {
   assert(count > 0);
- 
   T item = arr[begin++];
   count--;
 
@@ -64,17 +63,17 @@ T TQueue<T>::pop() {
   return item;
 }
 template<typename T>
-T TQueue<T>::get() const {
+T TPQueue<T>::get() const {
   assert(count > 0);
   return arr[begin];
 }
 template<typename T>
-bool TQueue<T>::isEmpty() const {
+bool TPQueue<T>::isEmpty() const {
   return count == 0;
 }
 
 template<typename T>
-bool TQueue<T>::isFull() const {
+bool TPQueue<T>::isFull() const {
   return count == size;
 }
 struct SYM {
